@@ -1,0 +1,77 @@
+﻿<Window x:Class="Client.CreateRoomWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client"
+        mc:Ignorable="d"
+        Title="CreateRoomWindow" WindowStyle="None" WindowState="Maximized">
+    <Window.Resources>
+        <Style x:Key="CustomTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="MainMenuButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="230"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="#937ADD"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+BorderBrush="{TemplateBinding BorderBrush}"
+BorderThickness="{TemplateBinding BorderThickness}"
+CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightBlue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="images/main_menu.png"/>
+        </Grid.Background>
+
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Width="400" VerticalAlignment="Center">
+                <TextBox x:Name="RoomNameTextBox" Text="Room name" Style="{StaticResource CustomTextBoxStyle}" Margin="10" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                <TextBox x:Name="QuestionTimeTextBox" Text="Time for question (5 - 30 seconds)" Style="{StaticResource CustomTextBoxStyle}" Margin="10" PreviewTextInput="isNumber" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                <TextBox x:Name="PlayersAmountTextBox" Text="Players amount (max 10)" Style="{StaticResource CustomTextBoxStyle}" Margin="10" PreviewTextInput="isNumber" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                <TextBox x:Name="QuestionCountTextBox" Text="Questions amount (max 50)" Style="{StaticResource CustomTextBoxStyle}" Margin="10" PreviewTextInput="isNumber" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <Button x:Name="CreateButton" Content="Create" Click="Button_Create" Style="{StaticResource MainMenuButtonStyle}" Cursor="Hand" Margin="10" Width="150"/>
+                    <Button x:Name="BackButton" Content="Back" Click="Button_Back" Style="{StaticResource MainMenuButtonStyle}" Background="BurlyWood" Cursor="Hand" Margin="10" Width="150"/>
+                    
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
